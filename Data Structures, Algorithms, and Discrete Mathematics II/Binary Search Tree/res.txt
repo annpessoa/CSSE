@@ -1,0 +1,56 @@
+==2433== Memcheck, a memory error detector
+==2433== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==2433== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==2433== Command: ./a.out
+==2433== 
+p1.changeCoefficient( 1, 1 ); performed
+p1.changeCoefficient( 4, 4 ); performed
+p1.changeCoefficient( 2.2, 2 ); performed
+p1.changeCoefficient( -3.8, 3 ); performed
+p1 = 4x^4 - 3.8x^3 + 2.2x^2 + x
+p1.changeCoefficient( 0, 2 ); performed
+p1 = 4x^4 - 3.8x^3 + x
+Term does not exist within the Polynomial.
+p1.changeCoefficient( 0, 2 ); performed again
+p1 = 4x^4 - 3.8x^3 + x
+p1's degree = 4
+p1.coefficient( 10 ) = 0
+p1.coefficient( 3 ) = -3.8
+Polynomial p2( p1 ); performed
+p2 = 4x^4 - 3.8x^3 + x
+p2.changeCoefficient( 9.5, 2 ); performed
+p1 = 4x^4 - 3.8x^3 + x
+p2 = 4x^4 - 3.8x^3 + 9.5x^2 + x
+p2 = p1; performed
+p1 = 4x^4 - 3.8x^3 + x
+p2 = 4x^4 - 3.8x^3 + x
+The two polynomials are the same
+p2 = p2; performed
+p2 = 4x^4 - 3.8x^3 + x
+p2.changeCoefficient( 7.6, 10 ); performed
+p2 = 7.6x^10 + 4x^4 - 3.8x^3 + x
+Polynomial p3 = p1 + p2; performed
+p3 = 7.6x^10 + 8x^4 - 7.6x^3 + 2x
+Polynomial p4 = p3 - p1; performed
+p4 = 4x^4 - 3.8x^3 + x
+p3 != p1
+p4 += p3; performed
+p4 = 7.6x^10 + 12x^4 - 11.4x^3 + 3x
+Term does not exist within the Polynomial.
+p4 -= p3; performed
+p4 = 4x^4 - 3.8x^3 + x
+==2433== 
+==2433== HEAP SUMMARY:
+==2433==     in use at exit: 72,704 bytes in 1 blocks
+==2433==   total heap usage: 41 allocs, 40 frees, 90,336 bytes allocated
+==2433== 
+==2433== LEAK SUMMARY:
+==2433==    definitely lost: 0 bytes in 0 blocks
+==2433==    indirectly lost: 0 bytes in 0 blocks
+==2433==      possibly lost: 0 bytes in 0 blocks
+==2433==    still reachable: 72,704 bytes in 1 blocks
+==2433==         suppressed: 0 bytes in 0 blocks
+==2433== Rerun with --leak-check=full to see details of leaked memory
+==2433== 
+==2433== For counts of detected and suppressed errors, rerun with: -v
+==2433== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
